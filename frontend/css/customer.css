@@ -1,0 +1,550 @@
+/* 
+   Education Platform Theme: Matte Black & Neon 
+   File: style.css
+   Description: A vibrant, modern CSS file with animations and a dark neon aesthetic.
+*/
+
+/* ===== RESET & GLOBAL STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Matte Black & Neon Color Palette */
+    --matte-black: #1a1e2a;
+    --matte-black-lighter: #252b3a;
+    --neon-blue: #00e0ff;
+    --neon-green: #39ff14;
+    --neon-pink: #ff44cc;
+    --neon-purple: #b026ff;
+    --dark-surface: #0f1219;
+    --card-bg: #1e2432;
+    --text-primary: #eaeef2;
+    --text-secondary: #a0a8b8;
+    --border-glow: rgba(0, 224, 255, 0.3);
+    --shadow-neon: 0 0 15px rgba(0, 224, 255, 0.5);
+}
+
+body {
+    font-family: 'Inter', 'Arial', sans-serif;
+    background: var(--dark-surface);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated background grid effect */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background:
+        linear-gradient(rgba(0, 224, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 224, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+    animation: gridShift 20s linear infinite;
+}
+
+@keyframes gridShift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+/* ===== NAVBAR (Matte Black + Neon Accent) ===== */
+.navbar {
+    background: var(--matte-black);
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--neon-blue);
+    box-shadow: 0 4px 20px rgba(0, 224, 255, 0.2);
+    backdrop-filter: blur(5px);
+    animation: slideInDown 0.5s ease-out;
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.navbar a {
+    color: var(--text-secondary);
+    margin-left: 2rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--neon-blue);
+    box-shadow: var(--shadow-neon);
+    transition: width 0.3s ease;
+}
+
+.navbar a:hover {
+    color: var(--neon-blue);
+    text-shadow: 0 0 8px var(--neon-blue);
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+/* ===== CONTAINER & LAYOUT ===== */
+.container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 2rem auto;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== CARDS (Matte with Neon Glow) ===== */
+.card {
+    background: var(--card-bg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--matte-black-lighter);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 224, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-blue);
+    box-shadow: 0 15px 40px rgba(0, 224, 255, 0.3);
+}
+
+.card:hover::before {
+    left: 100%;
+}
+
+/* ===== BUTTONS (Neon) ===== */
+button {
+    background: transparent;
+    color: var(--neon-blue);
+    border: 2px solid var(--neon-blue);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px transparent;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--neon-blue);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+    z-index: -1;
+}
+
+button:hover {
+    color: var(--matte-black);
+    background: var(--neon-blue);
+    box-shadow: 0 0 20px var(--neon-blue);
+    border-color: var(--neon-blue);
+}
+
+button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Secondary button variant */
+.button-secondary {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+}
+
+.button-secondary:hover {
+    background: var(--neon-green);
+    box-shadow: 0 0 20px var(--neon-green);
+    border-color: var(--neon-green);
+}
+
+/* ===== TABLES (Neon Header, Glow Effects) ===== */
+.table-wrapper {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 224, 255, 0.1);
+    animation: glowPulse 3s infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 20px rgba(0, 224, 255, 0.1);
+    }
+
+    100% {
+        box-shadow: 0 0 40px rgba(0, 224, 255, 0.3);
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+th {
+    background: var(--matte-black);
+    color: var(--neon-blue);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1.2rem 1rem;
+    border: none;
+    position: relative;
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--neon-blue);
+    box-shadow: var(--shadow-neon);
+}
+
+td {
+    padding: 1rem;
+    border: 1px solid var(--matte-black-lighter);
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+tr {
+    transition: background 0.3s ease;
+}
+
+tr:hover td {
+    background: var(--matte-black-lighter);
+    color: var(--text-primary);
+    border-color: var(--neon-blue);
+}
+
+/* ===== LINKS (Neon) ===== */
+a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+/* ===== FORM ELEMENTS (Neon Outline) ===== */
+input,
+textarea,
+select {
+    background: var(--matte-black-lighter);
+    border: 2px solid transparent;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+    background: var(--matte-black);
+}
+
+label {
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* ===== HEADINGS (Neon Accents) ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    animation: hueRotate 8s infinite linear;
+}
+
+@keyframes hueRotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* ===== BADGES / TAGS (Neon) ===== */
+.badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(0, 224, 255, 0.1);
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.3);
+    animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+    0% {
+        box-shadow: 0 0 5px var(--neon-blue);
+    }
+
+    50% {
+        box-shadow: 0 0 15px var(--neon-blue);
+    }
+
+    100% {
+        box-shadow: 0 0 5px var(--neon-blue);
+    }
+}
+
+/* ===== LOADING ANIMATIONS ===== */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--matte-black-lighter);
+    border-top: 4px solid var(--neon-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== SCROLLBAR STYLING (Neon) ===== */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--matte-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--neon-blue);
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px var(--neon-blue);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-green);
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-neon-blue {
+    color: var(--neon-blue);
+}
+
+.text-neon-green {
+    color: var(--neon-green);
+}
+
+.text-neon-pink {
+    color: var(--neon-pink);
+}
+
+.text-neon-purple {
+    color: var(--neon-purple);
+}
+
+.bg-matte-black {
+    background: var(--matte-black);
+}
+
+.bg-card {
+    background: var(--card-bg);
+}
+
+.glow-text {
+    text-shadow: 0 0 8px currentColor;
+}
+
+.glow-box {
+    box-shadow: 0 0 20px currentColor;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .navbar a {
+        margin: 0 1rem;
+    }
+
+    .container {
+        width: 95%;
+        padding: 0 0.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    th,
+    td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== ADDITIONAL FLOATING ANIMATIONS ===== */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ===== NEON DIVIDER ===== */
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-purple), var(--neon-green), transparent);
+    margin: 2rem 0;
+    animation: slideBackground 3s linear infinite;
+    background-size: 200% 100%;
+}
+
+@keyframes slideBackground {
+    0% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: -100% 0;
+    }
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Accounts</title>
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+
+<header>My Accounts</header>
+
+<div class="container">
+
+<h2>Create Account</h2>
+
+<input id="branch_id" placeholder="Branch ID">
+<input id="account_type" placeholder="Account Type (Savings/Current)">
+
+<button onclick="createAccount()">Create Account</button>
+
+<hr>
+
+<h2>Your Accounts</h2>
+
+<button onclick="loadAccounts()">Load Accounts</button>
+
+<table id="accountsTable">
+
+<tr>
+<th>Account ID</th>
+<th>Branch</th>
+<th>Balance</th>
+</tr>
+
+</table>
+
+</div>
+
+<script src="../js/customer.js"></script>
+
+</body>
+</html>
